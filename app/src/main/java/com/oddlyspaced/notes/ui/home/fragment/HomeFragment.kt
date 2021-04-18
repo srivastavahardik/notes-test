@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.rvHomeHeader.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        adapter = NotesAdapter()
+        adapter = NotesAdapter(this)
         binding.rvHomeHeader.adapter = adapter
     }
 
