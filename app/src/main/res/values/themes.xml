@@ -13,4 +13,140 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="TextAppearance.Poppins.H0" parent="Theme.Notes">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">60sp</item>
+        <item name="lineHeight">64sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Poppins.H1" parent="Theme.Notes">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">48sp</item>
+        <item name="lineHeight">56sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Poppins.H2" parent="Theme.Notes">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">40sp</item>
+        <item name="lineHeight">48sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Poppins.H3" parent="Theme.Notes">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">36sp</item>
+        <item name="lineHeight">40sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Poppins.H4" parent="Theme.Notes">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="lineHeight">40sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Poppins.H5" parent="Theme.Notes">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">32sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Poppins.H6" parent="Theme.Notes">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Poppins.Title" parent="Theme.Notes">
+        <item name="fontFamily">@font/poppins_semibold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Title.M" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Title.S" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Button.L" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">16sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Button.S" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Tab" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Body.L" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Body.S" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">13sp</item>
+        <item name="lineHeight">24sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Body.S.Bold" parent="TextAppearance.Inter.Body.S">
+        <item name="fontFamily">@font/inter_bold</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Body.S.Regular" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:textSize">13sp</item>
+        <item name="lineHeight">20sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Caption.L" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">12sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Caption.S" parent="TextAppearance.Inter.Caption.L">
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="TextAppearance.Inter.Chip" parent="Theme.Notes">
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">10sp</item>
+        <item name="lineHeight">16sp</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
 </resources>
