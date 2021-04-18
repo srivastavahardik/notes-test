@@ -1,4 +1,4 @@
-package com.oddlyspaced.notes.global
+package com.oddlyspaced.notes.api
 
 import com.oddlyspaced.notes.modal.Note
 import retrofit2.Call
