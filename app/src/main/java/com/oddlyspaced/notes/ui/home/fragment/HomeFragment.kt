@@ -1,7 +1,6 @@
 package com.oddlyspaced.notes.ui.home.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +27,8 @@ class HomeFragment : Fragment() {
 
         setupRecyclerView()
         setupObservers()
+
+        viewmodel.fetchNotes()
 
         return binding.root
     }
