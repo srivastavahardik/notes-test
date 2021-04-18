@@ -11,15 +11,16 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_noteFragment"
-            app:destination="@id/noteFragment" />
-        <argument
-            android:name="note_id"
-            android:defaultValue="-1"
-            app:argType="integer" />
+            app:destination="@id/noteFragment">
+            <argument
+                android:name="noteid"
+                android:defaultValue="-1"
+                app:argType="integer" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/noteFragment"
         android:name="com.oddlyspaced.notes.ui.note.fragment.NoteFragment"
         android:label="NoteFragment"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note"></fragment>
 </navigation>
