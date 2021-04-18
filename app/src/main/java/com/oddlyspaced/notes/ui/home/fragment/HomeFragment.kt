@@ -1,13 +1,13 @@
 package com.oddlyspaced.notes.ui.home.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.oddlyspaced.notes.R
 import com.oddlyspaced.notes.databinding.FragmentHomeBinding
 import com.oddlyspaced.notes.ui.home.adapter.HeaderNotesAdapter
@@ -26,7 +26,8 @@ class HomeFragment : Fragment() {
     }
 
     private fun displaySampleHeaders() {
-        binding.rvHomeHeader.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+//        binding.rvHomeHeader.layoutManager = LinearLayoutManager(activity)
+        binding.rvHomeHeader.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
         binding.rvHomeHeader.adapter = HeaderNotesAdapter()
     }
 
