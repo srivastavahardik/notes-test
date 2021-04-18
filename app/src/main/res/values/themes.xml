@@ -27,4 +27,22 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="TextAppearance.Note.Title" parent="Theme.Notes">
+        <item name="fontFamily">@font/bold</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Note.Date" parent="Theme.Notes">
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <style name="TextAppearance.Note.Content" parent="Theme.Notes">
+        <item name="fontFamily">@font/regular</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
 </resources>
