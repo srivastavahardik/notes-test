@@ -27,7 +27,9 @@ class NotesAdapter(private val fragment: Fragment) : ListAdapter<Note, NoteViewH
 class NoteViewHolder(private val binding: ItemNoteBinding, private val fragment: Fragment): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: Note) {
         binding.root.setOnClickListener {
-            NavHostFragment.findNavController(fragment).navigate(HomeFragmentDirections.actionHomeFragmentToNoteFragment())
+            NavHostFragment.findNavController(fragment).navigate(HomeFragmentDirections.actionHomeFragmentToNoteFragment().apply {
+                noteid = item.id
+            })
         }
         binding.txNoteTitle.text = item.title
         binding.txNoteDate.text = item.date
