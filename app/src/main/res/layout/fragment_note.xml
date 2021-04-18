@@ -33,6 +33,7 @@
             app:layout_constraintGuide_end="@dimen/default_padding" />
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/cvEditSave"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#3b3b3b"
@@ -48,7 +49,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/cvBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="#3b3b3b"
@@ -70,23 +71,25 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline7"
             app:layout_constraintStart_toStartOf="@+id/guideline5"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            app:layout_constraintTop_toBottomOf="@+id/cvBack">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView2"
+                <EditText
+                    android:id="@+id/txTitle"
                     style="@style/TextAppearance.Note.Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@color/background"
+                    android:editable="false"
                     android:text="Beautiful weater app UI concepts we wish existed"
                     android:textColor="@android:color/white" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/txDate"
                     style="@style/TextAppearance.Note.Date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -94,12 +97,14 @@
                     android:text="May 21, 2020"
                     android:textColor="#929292" />
 
-                <TextView
-                    android:id="@+id/textView4"
+                <EditText
+                    android:id="@+id/txContent"
                     style="@style/TextAppearance.Note.Content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:background="@color/background"
+                    android:editable="false"
                     android:lineSpacingExtra="4sp"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Ultricies leo integer malesuada nunc vel. Quam pellentesque nec nam aliquam sem. Egestas sed tempus urna et. Bibendum at varius vel pharetra. Cursus vitae congue mauris rhoncus aenean vel elit. Dui nunc mattis enim ut tellus elementum. Faucibus purus in massa tempor nec feugiat nisl. Fusce id velit ut tortor pretium viverra suspendisse. Dignissim diam quis enim lobortis scelerisque. Est ullamcorper eget nulla facilisi etiam. Egestas purus viverra accumsan in nisl nisi."
                     android:textColor="@android:color/white" />
