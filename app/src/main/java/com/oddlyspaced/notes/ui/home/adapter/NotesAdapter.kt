@@ -3,75 +3,41 @@ package com.oddlyspaced.notes.ui.home.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.oddlyspaced.notes.databinding.ItemNoteBinding
 import com.oddlyspaced.notes.modal.Note
+import com.oddlyspaced.notes.ui.home.fragment.HomeFragmentDirections
 
-class NotesAdapter : ListAdapter<Note, NotesAdapter.NoteViewHolder>(NotesDiffCallback()) {
+class NotesAdapter(private val fragment: Fragment) : ListAdapter<Note, NoteViewHolder>(NotesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-        return NoteViewHolder.from(parent)
+        return NoteViewHolder.from(parent, fragment)
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         Log.e("BIND","BIND")
         holder.bind(getItem(position))
     }
+}
 
-    class NoteViewHolder(private val binding: ItemNoteBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Note) {
-            binding.txNoteTitle.text = item.title
-            binding.txNoteDate.text = item.date
+class NoteViewHolder(private val binding: ItemNoteBinding, private val fragment: Fragment): RecyclerView.ViewHolder(binding.root) {
+    fun bind(item: Note) {
+        binding.root.setOnClickListener {
+            NavHostFragment.findNavController(fragment).navigate(HomeFragmentDirections.actionHomeFragmentToNoteFragment())
         }
-
-        companion object {
-            fun from(parent: ViewGroup): NoteViewHolder {
-                return NoteViewHolder(ItemNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-            }
-        }
+        binding.txNoteTitle.text = item.title
+        binding.txNoteDate.text = item.date
     }
 
-//    class ViewHolder(private val binding: ListItemSleepNightBinding) : RecyclerView.ViewHolder(binding.root){
-//
-//        fun bind(item: SleepNight) {
-//            binding.sleep = item
-//            binding.executePendingBindings()
-//        }
-//
-//        companion object {
-//            fun from(parent: ViewGroup): ViewHolder {
-//                val layoutInflater = LayoutInflater.from(parent.context)
-//                val binding = ListItemSleepNightBinding.inflate(layoutInflater, parent, false)
-//                return ViewHolder(binding)
-//            }
-//        }
-//    }
-
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
-////        return NoteViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_note, parent, false))
-//        return NoteViewHolder(ItemNoteBinding.inflate(LayoutInflater.from(parent.context)))
-//    }
-//
-//    private val tt = listOf(
-//        "1111111111111111111111",
-//        "1111111111",
-//        "1111111111111111111111111111",
-//        "11111111111",
-//        "1111111111111111111111111111111111111",
-//        "1111",
-//        "12312311"
-//    )
-//
-//    override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-//        holder.text.text = tt.random()
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return 10
-//    }
-
+    companion object {
+        fun from(parent: ViewGroup, fragment: Fragment): NoteViewHolder {
+            return NoteViewHolder(ItemNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false), fragment)
+        }
+    }
 }
 
 class NotesDiffCallback: DiffUtil.ItemCallback<Note>() {
