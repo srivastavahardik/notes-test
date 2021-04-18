@@ -22,7 +22,8 @@ class NotesAdapter : ListAdapter<Note, NotesAdapter.NoteViewHolder>(NotesDiffCal
 
     class NoteViewHolder(private val binding: ItemNoteBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Note) {
-            binding.txItemTitle.text = item.title
+            binding.txNoteTitle.text = item.title
+            binding.txNoteDate.text = item.date
         }
 
         companion object {
