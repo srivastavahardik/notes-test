@@ -1,6 +1,5 @@
 package com.oddlyspaced.notes.ui.home.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -12,7 +11,6 @@ import com.google.gson.Gson
 import com.oddlyspaced.notes.databinding.ItemNoteBinding
 import com.oddlyspaced.notes.modal.Note
 import com.oddlyspaced.notes.ui.home.fragment.HomeFragmentDirections
-import com.oddlyspaced.notes.ui.note.fragment.NoteFragment
 
 class NotesAdapter(private val fragment: Fragment) : ListAdapter<Note, NoteViewHolder>(NotesDiffCallback()) {
 
@@ -21,7 +19,6 @@ class NotesAdapter(private val fragment: Fragment) : ListAdapter<Note, NoteViewH
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        Log.e("BIND","BIND")
         holder.bind(getItem(position))
     }
 }
