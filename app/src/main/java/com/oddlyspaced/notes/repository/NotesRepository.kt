@@ -34,4 +34,22 @@ object NotesRepository {
         return notesResponse
     }
 
+    fun fetchNoteInfo(noteId: Int): LiveData<CompleteNote> {
+        val notesResponse = MutableLiveData<CompleteNote>()
+        apiInterface.fetchNote(noteId).enqueue(object : Callback<CompleteNote> {
+            override fun onResponse(call: Call<CompleteNote>, response: Response<CompleteNote>) {
+                if (response.isSuccessful) {
+                    notesResponse.postValue(response.body())
+                }
+            }
+
+            override fun onFailure(call: Call<CompleteNote>, t: Throwable) {
+                Log.e("NotesRepository", "ERROR")
+                t.printStackTrace()
+            }
+
+        })
+        return notesResponse
+    }
+
 }
