@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.oddlyspaced.notes.R
@@ -25,12 +26,19 @@ class HomeFragment : Fragment() {
         viewmodel = ViewModelProvider(this).get(HomeViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
+        setupClickListeners()
         setupRecyclerView()
         setupObservers()
 
-//        viewmodel.fetchNotes()
-
         return binding.root
+    }
+
+    private fun setupClickListeners() {
+        binding.fabHomeAdd.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(HomeFragmentDirections.homeToNote().apply {
+                notejson = ""
+            })
+        }
     }
 
     private fun setupRecyclerView() {
