@@ -1,5 +1,6 @@
 package com.oddlyspaced.notes.ui.note.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,8 +18,8 @@ class NoteViewModel(noteJson: String): ViewModel() {
     val title: LiveData<String>
         get() = _title
 
-    private val _content = MutableLiveData<List<Item>>()
-    val content: LiveData<List<Item>>
+    private val _content = MutableLiveData<ArrayList<Item>>()
+    val content: LiveData<ArrayList<Item>>
         get() = _content
 
     private val note: Note = if (noteJson.isEmpty()) {
@@ -39,7 +40,7 @@ class NoteViewModel(noteJson: String): ViewModel() {
 
     init {
         _title.postValue(note.title)
-        _content.postValue(note.content)
+        _content.postValue(ArrayList(note.content))
 
         _isEditing.postValue(false)
     }
@@ -59,6 +60,13 @@ class NoteViewModel(noteJson: String): ViewModel() {
             note.content
         )
         NotesRepository.updateNote(noteCopy)
+    }
+
+    fun addItem(content: String) {
+        val copy = (_content.value) ?: ArrayList()
+        val lastIndex = if (copy.isEmpty()) 0 else copy.last().id
+        _content.value?.add(Item(lastIndex + 1, content, false))
+        _content.postValue(_content.value)
     }
 
 }
