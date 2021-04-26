@@ -7,13 +7,7 @@ import com.oddlyspaced.notes.repository.NotesRepository
 
 class HomeViewModel : ViewModel() {
 
-    private val notesRepository = NotesRepository()
-    val notes: LiveData<List<Note>>
-        get() = notesRepository.notesResponse
-
-
-    fun fetchNotes() {
-        notesRepository.fetchNotes()
-    }
+    private val notesRepository = NotesRepository
+    val notes: LiveData<List<Note>> = notesRepository.fetchNotes()
 
 }
