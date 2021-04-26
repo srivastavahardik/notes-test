@@ -22,4 +22,10 @@ interface ApiInterface {
     suspend fun updateNote(
         @Query("note") note: String
     ): Response<MessageResponse>
+
+    @GET("/note/delete")
+    fun deleteNote(
+        @Query("noteId") noteId: Int
+    ): Call<MessageResponse>
+
 }
