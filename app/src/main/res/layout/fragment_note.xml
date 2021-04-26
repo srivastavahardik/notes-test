@@ -78,15 +78,38 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <EditText
-                    android:id="@+id/txTitle"
-                    style="@style/TextAppearance.Note.Title"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/consTitle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@color/background"
-                    android:editable="false"
-                    android:text="Beautiful weater app UI concepts we wish existed"
-                    android:textColor="@android:color/white" />
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/txTitle"
+                        style="@style/TextAppearance.Note.Title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/background"
+                        android:text="Beautiful weater app UI concepts we wish existed"
+                        android:textColor="@android:color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <EditText
+                        android:id="@+id/etTitle"
+                        style="@style/TextAppearance.Note.Title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@color/background"
+                        android:text="Beautiful weater app UI concepts we wish existed"
+                        android:textColor="@android:color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/txDate"
@@ -104,7 +127,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:background="@color/background"
-                    android:editable="false"
                     android:lineSpacingExtra="4sp"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Ultricies leo integer malesuada nunc vel. Quam pellentesque nec nam aliquam sem. Egestas sed tempus urna et. Bibendum at varius vel pharetra. Cursus vitae congue mauris rhoncus aenean vel elit. Dui nunc mattis enim ut tellus elementum. Faucibus purus in massa tempor nec feugiat nisl. Fusce id velit ut tortor pretium viverra suspendisse. Dignissim diam quis enim lobortis scelerisque. Est ullamcorper eget nulla facilisi etiam. Egestas purus viverra accumsan in nisl nisi."
                     android:textColor="@android:color/white" />
