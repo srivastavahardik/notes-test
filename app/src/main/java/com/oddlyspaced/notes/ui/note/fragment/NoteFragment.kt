@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -18,7 +19,7 @@ class NoteFragment: Fragment() {
     private lateinit var viewmodel: NoteViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        viewmodel = NoteViewModelFactory(1).create(NoteViewModel::class.java)
+        viewmodel = NoteViewModelFactory(NoteFragmentArgs.fromBundle(requireArguments()).notejson).create(NoteViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_note, container, false)
 
         setupObservers()
@@ -34,20 +35,10 @@ class NoteFragment: Fragment() {
     }
 
     private fun setupObservers() {
-        viewmodel.note.observe(viewLifecycleOwner, { completeNote ->
-            completeNote.note.let { note ->
-                binding.txTitle.text = note.title
-                binding.etTitle.setText(note.title)
-                binding.txDate.text = note.date
-            }
-
-            binding.txContent.text = ""
-            binding.etContent.setText("")
-            completeNote.content.let { contentList ->
-                if (contentList.isNotEmpty()) {
-                    binding.txContent.text = contentList.first().content
-                    binding.etContent.setText(contentList.first().content)
-                }
+        viewmodel.title.observe(viewLifecycleOwner, { title ->
+            binding.apply {
+                txTitle.text = title
+                etTitle.setText(title)
             }
         })
 
@@ -61,6 +52,10 @@ class NoteFragment: Fragment() {
                 txContent.isVisible = !editing
 
                 imgIcon.setImageResource(if (editing) R.drawable.ic_save else R.drawable.ic_edit)
+            }
+
+            if (!editing) {
+                // Save
             }
         })
     }
