@@ -123,38 +123,58 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+
                     android:layout_marginTop="8dp">
 
-                    <EditText
-                        android:id="@+id/etContent"
-                        style="@style/TextAppearance.Note.Content"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvItems"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/background"
-                        android:lineSpacingExtra="4sp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Ultricies leo integer malesuada nunc vel. Quam pellentesque nec nam aliquam sem. Egestas sed tempus urna et. Bibendum at varius vel pharetra. Cursus vitae congue mauris rhoncus aenean vel elit. Dui nunc mattis enim ut tellus elementum. Faucibus purus in massa tempor nec feugiat nisl. Fusce id velit ut tortor pretium viverra suspendisse. Dignissim diam quis enim lobortis scelerisque. Est ullamcorper eget nulla facilisi etiam. Egestas purus viverra accumsan in nisl nisi."
-                        android:textColor="@android:color/white"
+                        android:layout_height="match_parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <TextView
-                        android:id="@+id/txContent"
-                        style="@style/TextAppearance.Note.Content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/background"
-                        android:lineSpacingExtra="4sp"
-                        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Ultricies leo integer malesuada nunc vel. Quam pellentesque nec nam aliquam sem. Egestas sed tempus urna et. Bibendum at varius vel pharetra. Cursus vitae congue mauris rhoncus aenean vel elit. Dui nunc mattis enim ut tellus elementum. Faucibus purus in massa tempor nec feugiat nisl. Fusce id velit ut tortor pretium viverra suspendisse. Dignissim diam quis enim lobortis scelerisque. Est ullamcorper eget nulla facilisi etiam. Egestas purus viverra accumsan in nisl nisi."
-                        android:textColor="@android:color/white"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <EditText
+                            android:id="@+id/etContent"
+                            style="@style/TextAppearance.Note.Content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/background"
+                            android:lineSpacingExtra="4sp"
+                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Ultricies leo integer malesuada nunc vel. Quam pellentesque nec nam aliquam sem. Egestas sed tempus urna et. Bibendum at varius vel pharetra. Cursus vitae congue mauris rhoncus aenean vel elit. Dui nunc mattis enim ut tellus elementum. Faucibus purus in massa tempor nec feugiat nisl. Fusce id velit ut tortor pretium viverra suspendisse. Dignissim diam quis enim lobortis scelerisque. Est ullamcorper eget nulla facilisi etiam. Egestas purus viverra accumsan in nisl nisi."
+                            android:textColor="@android:color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/txContent"
+                            style="@style/TextAppearance.Note.Content"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/background"
+                            android:lineSpacingExtra="4sp"
+                            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet volutpat consequat mauris nunc congue nisi vitae suscipit. Ultricies leo integer malesuada nunc vel. Quam pellentesque nec nam aliquam sem. Egestas sed tempus urna et. Bibendum at varius vel pharetra. Cursus vitae congue mauris rhoncus aenean vel elit. Dui nunc mattis enim ut tellus elementum. Faucibus purus in massa tempor nec feugiat nisl. Fusce id velit ut tortor pretium viverra suspendisse. Dignissim diam quis enim lobortis scelerisque. Est ullamcorper eget nulla facilisi etiam. Egestas purus viverra accumsan in nisl nisi."
+                            android:textColor="@android:color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
 
+                    </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>

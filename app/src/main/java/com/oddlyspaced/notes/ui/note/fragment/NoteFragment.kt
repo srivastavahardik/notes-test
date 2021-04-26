@@ -10,8 +10,13 @@ import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.oddlyspaced.notes.R
 import com.oddlyspaced.notes.databinding.FragmentNoteBinding
+import com.oddlyspaced.notes.modal.Item
+import com.oddlyspaced.notes.ui.home.adapter.ItemsAdapter
+import com.oddlyspaced.notes.ui.home.adapter.NotesAdapter
 import com.oddlyspaced.notes.ui.note.viewmodel.NoteViewModel
 import com.oddlyspaced.notes.ui.note.viewmodel.NoteViewModelFactory
 
@@ -20,10 +25,13 @@ class NoteFragment: Fragment() {
     private lateinit var binding: FragmentNoteBinding
     private lateinit var viewmodel: NoteViewModel
 
+    private lateinit var adapter: ItemsAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         viewmodel = NoteViewModelFactory(NoteFragmentArgs.fromBundle(requireArguments()).notejson).create(NoteViewModel::class.java)
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_note, container, false)
 
+        setupRecyclerView()
         setupObservers()
         setupClickListeners()
 
@@ -39,6 +47,37 @@ class NoteFragment: Fragment() {
                 viewmodel.toggleEditing()
             }
         }
+    }
+
+    private fun setupRecyclerView() {
+        binding.rvItems.layoutManager = LinearLayoutManager(context)
+        adapter = ItemsAdapter()
+        binding.rvItems.adapter = adapter
+
+        adapter.submitList(
+            mutableListOf(
+                Item(
+                    1,
+                    "Text 1",
+                    false
+                ),
+                Item(
+                    2,
+                    "Text 1",
+                    false
+                ),
+                Item(
+                    3,
+                    "Text 1",
+                    false
+                ),
+                Item(
+                    4,
+                    "Text 1",
+                    false
+                )
+            )
+        )
     }
 
     private fun setupObservers() {
