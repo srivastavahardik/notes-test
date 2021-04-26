@@ -6,24 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import com.oddlyspaced.notes.api.ApiClient
 import com.oddlyspaced.notes.api.ApiInterface
 import com.oddlyspaced.notes.modal.Note
+import com.oddlyspaced.notes.modal.CompleteNote
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class NotesRepository {
+object NotesRepository {
 
     private val client = ApiClient.getApiClient()
     private val apiInterface = client.create(ApiInterface::class.java)
 
-    private val _notesResponse = MutableLiveData<List<Note>>()
-    val notesResponse: LiveData<List<Note>>
-        get() = _notesResponse
-
-    fun fetchNotes() {
+    fun fetchNotes(): LiveData<List<Note>> {
+        val notesResponse = MutableLiveData<List<Note>>()
         apiInterface.fetchNotes().enqueue(object : Callback<List<Note>> {
             override fun onResponse(call: Call<List<Note>>, response: Response<List<Note>>) {
                 if (response.isSuccessful) {
-                    _notesResponse.postValue(response.body())
+                    notesResponse.postValue(response.body())
                 }
             }
 
@@ -31,7 +29,9 @@ class NotesRepository {
                 Log.e("NotesRepository", "ERROR")
                 t.printStackTrace()
             }
+
         })
+        return notesResponse
     }
 
 }
