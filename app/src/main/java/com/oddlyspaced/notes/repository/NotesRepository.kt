@@ -3,15 +3,21 @@ package com.oddlyspaced.notes.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.gson.Gson
 import com.oddlyspaced.notes.api.ApiClient
 import com.oddlyspaced.notes.api.ApiInterface
 import com.oddlyspaced.notes.modal.Note
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 object NotesRepository {
 
+    private val gson = Gson()
     private val client = ApiClient.getApiClient()
     private val apiInterface = client.create(ApiInterface::class.java)
 
@@ -33,20 +39,19 @@ object NotesRepository {
         return notesResponse
     }
 
-//
-//    fun addNote(note: CompleteNote, folderId: Int = 1) {
-//        CoroutineScope(Dispatchers.IO).launch {
-//            val add = apiInterface.addNote(note, folderId)
-//            withContext(Dispatchers.IO) {
-//                if (add.isSuccessful) {
-//                    Log.e("NotesRepository", "Note Added successfully!")
-//                }
-//                else {
-//                    Log.e("NotesRepository", "Some error occured in uploading!")
-//                }
-//                Log.e("NotesRepository", add.body()?.message.toString())
-//            }
-//        }
-//    }
+    fun updateNote(note: Note) {
+        CoroutineScope(Dispatchers.IO).launch {
+            val add = apiInterface.updateNote(gson.toJson(note))
+            withContext(Dispatchers.IO) {
+                if (add.isSuccessful) {
+                    Log.d("NotesRepository", "Note Updated successfully!")
+                }
+                else {
+                    Log.e("NotesRepository", "Some error occurred in updating!")
+                }
+                Log.e("NotesRepository", add.body()?.message.toString())
+            }
+        }
+    }
 
 }
