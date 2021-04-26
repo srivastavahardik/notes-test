@@ -8,9 +8,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 import com.oddlyspaced.notes.databinding.ItemNoteBinding
 import com.oddlyspaced.notes.modal.Note
 import com.oddlyspaced.notes.ui.home.fragment.HomeFragmentDirections
+import com.oddlyspaced.notes.ui.note.fragment.NoteFragment
 
 class NotesAdapter(private val fragment: Fragment) : ListAdapter<Note, NoteViewHolder>(NotesDiffCallback()) {
 
@@ -27,8 +29,8 @@ class NotesAdapter(private val fragment: Fragment) : ListAdapter<Note, NoteViewH
 class NoteViewHolder(private val binding: ItemNoteBinding, private val fragment: Fragment): RecyclerView.ViewHolder(binding.root) {
     fun bind(item: Note) {
         binding.root.setOnClickListener {
-            NavHostFragment.findNavController(fragment).navigate(HomeFragmentDirections.actionHomeFragmentToNoteFragment().apply {
-                noteid = item.id
+            NavHostFragment.findNavController(fragment).navigate(HomeFragmentDirections.homeToNote().apply {
+                notejson = Gson().toJson(item)
             })
         }
         binding.txNoteTitle.text = item.title
