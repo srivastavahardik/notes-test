@@ -47,37 +47,16 @@ class NoteFragment: Fragment() {
                 viewmodel.toggleEditing()
             }
         }
+
+        binding.fabAddItem.setOnClickListener {
+            viewmodel.addItem("Sample Item")
+        }
     }
 
     private fun setupRecyclerView() {
         binding.rvItems.layoutManager = LinearLayoutManager(context)
         adapter = ItemsAdapter()
         binding.rvItems.adapter = adapter
-
-        adapter.submitList(
-            mutableListOf(
-                Item(
-                    1,
-                    "Text 1",
-                    false
-                ),
-                Item(
-                    2,
-                    "Text 1",
-                    false
-                ),
-                Item(
-                    3,
-                    "Text 1",
-                    false
-                ),
-                Item(
-                    4,
-                    "Text 1",
-                    false
-                )
-            )
-        )
     }
 
     private fun setupObservers() {
@@ -90,6 +69,8 @@ class NoteFragment: Fragment() {
                 txTitle.text = title
             }
         })
+
+        setupContentObserver()
 
         // TODO : Use data binding
         viewmodel.isEditing.observe(viewLifecycleOwner, { editing ->
@@ -112,5 +93,27 @@ class NoteFragment: Fragment() {
         })
     }
 
+    private fun setupContentObserver() {
+        viewmodel.content.observe(viewLifecycleOwner, { items ->
+            when (items.size) {
+                0 -> {
+                    binding.consEmptyAdd.setOnClickListener {
+                        viewmodel.toggleEditing()
+                        binding.consEmptyAdd.isVisible = false
+                        binding.consSingleItem.isVisible = true
+                    }
+                }
+                1 -> {
+                    binding.consEmptyAdd.isVisible = false
+                    binding.consSingleItem.isVisible = true
+                }
+                else -> {
+                    binding.consSingleItem.isVisible = false
+                    binding.rvItems.isVisible = true
+                    adapter.submitList(ArrayList(items))
+                }
+            }
+        })
+    }
 
 }
