@@ -16,9 +16,9 @@ object NotesRepository {
     private val client = ApiClient.getApiClient()
     private val apiInterface = client.create(ApiInterface::class.java)
 
-    fun fetchNotes(): LiveData<List<Note>> {
+    fun fetchNotes(folderId: Int = 1): LiveData<List<Note>> {
         val notesResponse = MutableLiveData<List<Note>>()
-        apiInterface.fetchNotes().enqueue(object : Callback<List<Note>> {
+        apiInterface.fetchNotes(folderId).enqueue(object : Callback<List<Note>> {
             override fun onResponse(call: Call<List<Note>>, response: Response<List<Note>>) {
                 if (response.isSuccessful) {
                     notesResponse.postValue(response.body())
