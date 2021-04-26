@@ -1,5 +1,5 @@
 package com.oddlyspaced.notes.modal
 
-data class Response(
+data class MessageResponse(
     val message: String
 )
