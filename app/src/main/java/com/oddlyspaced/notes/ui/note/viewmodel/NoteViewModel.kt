@@ -21,16 +21,23 @@ class NoteViewModel(noteJson: String): ViewModel() {
     val content: LiveData<List<Item>>
         get() = _content
 
-    private val note: Note
+    private val note: Note = if (noteJson.isEmpty()) {
+        Note(
+            -1,
+            "",
+            "",
+            listOf()
+        )
+    } else {
+        val type = object : TypeToken<Note>() {}.type
+        gson.fromJson(noteJson, type)
+    }
 
     private val _isEditing = MutableLiveData<Boolean>()
     val isEditing: LiveData<Boolean>
         get() = _isEditing
 
     init {
-        val type = object: TypeToken<Note>(){}.type
-        note = gson.fromJson(noteJson, type)
-
         _title.postValue(note.title)
         _content.postValue(note.content)
 
