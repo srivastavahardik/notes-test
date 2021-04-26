@@ -1,6 +1,4 @@
-package com.oddlyspaced.rdbms.notes.entity
-
-import com.oddlyspaced.notes.modal.Note
+package com.oddlyspaced.notes.modal
 
 data class CompleteNote(
     val note: Note,

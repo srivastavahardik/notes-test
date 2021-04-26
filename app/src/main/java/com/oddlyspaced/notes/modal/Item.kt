@@ -1,4 +1,4 @@
-package com.oddlyspaced.rdbms.notes.entity
+package com.oddlyspaced.notes.modal
 
 data class Item(
     val id: Int,
