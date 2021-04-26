@@ -7,6 +7,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.oddlyspaced.notes.modal.Item
 import com.oddlyspaced.notes.modal.Note
+import com.oddlyspaced.notes.repository.NotesRepository
 
 class NoteViewModel(noteJson: String): ViewModel() {
 
@@ -20,7 +21,7 @@ class NoteViewModel(noteJson: String): ViewModel() {
     val content: LiveData<List<Item>>
         get() = _content
 
-//    val note = MutableLiveData<Note>()
+    private val note: Note
 
     private val _isEditing = MutableLiveData<Boolean>()
     val isEditing: LiveData<Boolean>
@@ -30,7 +31,7 @@ class NoteViewModel(noteJson: String): ViewModel() {
         _isEditing.postValue(false)
 
         val type = object: TypeToken<Note>(){}.type
-        val note: Note = gson.fromJson(noteJson, type)
+        note = gson.fromJson(noteJson, type)
 
         _title.postValue(note.title)
         _content.postValue(note.content)
@@ -39,6 +40,16 @@ class NoteViewModel(noteJson: String): ViewModel() {
     fun toggleEditing() {
         val toggleValue = _isEditing.value?: true
         _isEditing.postValue(!toggleValue)
+    }
+
+    fun updateNote() {
+        val noteCopy = Note(
+            note.id,
+            title.value ?: "",
+            note.date,
+            note.content
+        )
+        NotesRepository.updateNote(noteCopy)
     }
 
 }
