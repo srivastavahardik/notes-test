@@ -25,7 +25,7 @@ class NoteViewModel(noteJson: String): ViewModel() {
         Note(
             -1,
             "",
-            "",
+            "2020",
             listOf()
         )
     } else {
