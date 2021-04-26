@@ -17,4 +17,9 @@ interface ApiInterface {
     fun fetchNotesInFolder(
         @Query("folderId") folderId: Int = 1
     ): Call<List<Note>>
+
+    @POST("/note/update")
+    suspend fun updateNote(
+        @Query("note") note: String
+    ): Response<MessageResponse>
 }
