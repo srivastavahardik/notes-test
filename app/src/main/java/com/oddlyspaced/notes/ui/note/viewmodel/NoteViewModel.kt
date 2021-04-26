@@ -28,13 +28,13 @@ class NoteViewModel(noteJson: String): ViewModel() {
         get() = _isEditing
 
     init {
-        _isEditing.postValue(false)
-
         val type = object: TypeToken<Note>(){}.type
         note = gson.fromJson(noteJson, type)
 
         _title.postValue(note.title)
         _content.postValue(note.content)
+
+        _isEditing.postValue(false)
     }
 
     fun toggleEditing() {
@@ -42,10 +42,12 @@ class NoteViewModel(noteJson: String): ViewModel() {
         _isEditing.postValue(!toggleValue)
     }
 
+    fun updateTitle(newTitle: String) = _title.postValue(newTitle)
+
     fun updateNote() {
         val noteCopy = Note(
             note.id,
-            title.value ?: "",
+            title.value ?: "why",
             note.date,
             note.content
         )

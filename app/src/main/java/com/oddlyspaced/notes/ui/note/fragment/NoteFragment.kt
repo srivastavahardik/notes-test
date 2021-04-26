@@ -1,11 +1,13 @@
 package com.oddlyspaced.notes.ui.note.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.notes.R
@@ -35,16 +37,20 @@ class NoteFragment: Fragment() {
     }
 
     private fun setupObservers() {
+        binding.etTitle.addTextChangedListener {
+            viewmodel.updateTitle(it.toString())
+        }
+
         viewmodel.title.observe(viewLifecycleOwner, { title ->
             binding.apply {
                 txTitle.text = title
-                etTitle.setText(title)
             }
         })
 
         // TODO : Use data binding
         viewmodel.isEditing.observe(viewLifecycleOwner, { editing ->
             binding.apply {
+                etTitle.setText(viewmodel.title.value)
                 etTitle.isVisible = editing
                 txTitle.isVisible = !editing
 
@@ -55,7 +61,7 @@ class NoteFragment: Fragment() {
             }
 
             if (!editing) {
-                // Save
+                viewmodel.updateNote()
             }
         })
     }
