@@ -32,7 +32,12 @@ class NoteFragment: Fragment() {
 
     private fun setupClickListeners() {
         binding.cvEditSave.setOnClickListener {
-            viewmodel.toggleEditing()
+            if (binding.etTitle.text.isEmpty() && viewmodel.isEditing.value == true) {
+                Toast.makeText(context, "Title cannot be empty!", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                viewmodel.toggleEditing()
+            }
         }
     }
 
