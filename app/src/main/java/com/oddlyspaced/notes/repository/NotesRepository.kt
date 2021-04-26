@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import com.oddlyspaced.notes.api.ApiClient
 import com.oddlyspaced.notes.api.ApiInterface
 import com.oddlyspaced.notes.modal.Note
-import com.oddlyspaced.notes.modal.CompleteNote
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +17,7 @@ object NotesRepository {
 
     fun fetchNotes(folderId: Int = 1): LiveData<List<Note>> {
         val notesResponse = MutableLiveData<List<Note>>()
-        apiInterface.fetchNotes(folderId).enqueue(object : Callback<List<Note>> {
+        apiInterface.fetchNotesInFolder(folderId).enqueue(object : Callback<List<Note>> {
             override fun onResponse(call: Call<List<Note>>, response: Response<List<Note>>) {
                 if (response.isSuccessful) {
                     notesResponse.postValue(response.body())
@@ -34,22 +33,20 @@ object NotesRepository {
         return notesResponse
     }
 
-    fun fetchNoteInfo(noteId: Int): LiveData<CompleteNote> {
-        val notesResponse = MutableLiveData<CompleteNote>()
-        apiInterface.fetchNote(noteId).enqueue(object : Callback<CompleteNote> {
-            override fun onResponse(call: Call<CompleteNote>, response: Response<CompleteNote>) {
-                if (response.isSuccessful) {
-                    notesResponse.postValue(response.body())
-                }
-            }
-
-            override fun onFailure(call: Call<CompleteNote>, t: Throwable) {
-                Log.e("NotesRepository", "ERROR")
-                t.printStackTrace()
-            }
-
-        })
-        return notesResponse
-    }
+//
+//    fun addNote(note: CompleteNote, folderId: Int = 1) {
+//        CoroutineScope(Dispatchers.IO).launch {
+//            val add = apiInterface.addNote(note, folderId)
+//            withContext(Dispatchers.IO) {
+//                if (add.isSuccessful) {
+//                    Log.e("NotesRepository", "Note Added successfully!")
+//                }
+//                else {
+//                    Log.e("NotesRepository", "Some error occured in uploading!")
+//                }
+//                Log.e("NotesRepository", add.body()?.message.toString())
+//            }
+//        }
+//    }
 
 }
