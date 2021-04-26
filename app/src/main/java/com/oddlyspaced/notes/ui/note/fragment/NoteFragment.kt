@@ -106,8 +106,10 @@ class NoteFragment: Fragment() {
                 1 -> {
                     binding.consEmptyAdd.isVisible = false
                     binding.consSingleItem.isVisible = true
+                    binding.rvItems.isVisible = false
                 }
                 else -> {
+                    binding.consEmptyAdd.isVisible = false
                     binding.consSingleItem.isVisible = false
                     binding.rvItems.isVisible = true
                     adapter.submitList(ArrayList(items))
