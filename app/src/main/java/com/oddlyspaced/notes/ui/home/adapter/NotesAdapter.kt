@@ -1,5 +1,6 @@
 package com.oddlyspaced.notes.ui.home.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -12,23 +13,28 @@ import com.oddlyspaced.notes.databinding.ItemNoteBinding
 import com.oddlyspaced.notes.modal.Note
 import com.oddlyspaced.notes.ui.home.fragment.HomeFragmentDirections
 
-class NotesAdapter(private val fragment: Fragment) : ListAdapter<Note, NoteViewHolder>(NotesDiffCallback()) {
+class NotesAdapter(private val fragment: Fragment, private val onLongPress: (Int) -> Unit) : ListAdapter<Note, NoteViewHolder>(NotesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         return NoteViewHolder.from(parent, fragment)
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onLongPress)
     }
 }
 
 class NoteViewHolder(private val binding: ItemNoteBinding, private val fragment: Fragment): RecyclerView.ViewHolder(binding.root) {
-    fun bind(item: Note) {
+    fun bind(item: Note, onLongPress: (Int) -> Unit) {
         binding.root.setOnClickListener {
             NavHostFragment.findNavController(fragment).navigate(HomeFragmentDirections.homeToNote().apply {
                 notejson = Gson().toJson(item)
             })
+        }
+        binding.root.setOnLongClickListener {
+            Log.e("POSITION", adapterPosition.toString())
+            onLongPress(adapterPosition)
+            true
         }
         binding.txNoteTitle.text = item.title
         binding.txNoteDate.text = item.date
