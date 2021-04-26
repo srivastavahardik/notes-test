@@ -41,10 +41,12 @@ class NoteFragment: Fragment() {
                 binding.txDate.text = note.date
             }
 
-            binding.txContent.setText("")
+            binding.txContent.text = ""
+            binding.etContent.setText("")
             completeNote.content.let { contentList ->
                 if (contentList.isNotEmpty()) {
-                    binding.txContent.setText(contentList.first().content)
+                    binding.txContent.text = contentList.first().content
+                    binding.etContent.setText(contentList.first().content)
                 }
             }
         })
@@ -54,6 +56,9 @@ class NoteFragment: Fragment() {
             binding.apply {
                 etTitle.isVisible = editing
                 txTitle.isVisible = !editing
+
+                etContent.isVisible = editing
+                txContent.isVisible = !editing
             }
         })
     }
