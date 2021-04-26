@@ -57,7 +57,7 @@ class NoteViewModel(noteJson: String): ViewModel() {
             note.id,
             title.value ?: "why",
             note.date,
-            note.content
+            content.value ?: listOf()
         )
         NotesRepository.updateNote(noteCopy)
     }
