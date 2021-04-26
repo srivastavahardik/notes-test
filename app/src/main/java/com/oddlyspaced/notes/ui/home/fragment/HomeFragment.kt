@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
 
         setupClickListeners()
         setupRecyclerView()
-        setupObservers()
+        fetchNoteList()
 
         return binding.root
     }
@@ -47,10 +47,15 @@ class HomeFragment : Fragment() {
         binding.rvHomeHeader.adapter = adapter
     }
 
-    private fun setupObservers() {
+    private fun fetchNoteList() {
         viewmodel.notes.observe(viewLifecycleOwner, {
             adapter.submitList(it)
         })
     }
 
+    // TODO : Replace this with a better implementation of checking updates
+    override fun onResume() {
+        super.onResume()
+        fetchNoteList()
+    }
 }
