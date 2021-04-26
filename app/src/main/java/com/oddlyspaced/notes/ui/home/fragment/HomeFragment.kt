@@ -28,7 +28,7 @@ class HomeFragment : Fragment() {
         setupRecyclerView()
         setupObservers()
 
-        viewmodel.fetchNotes()
+//        viewmodel.fetchNotes()
 
         return binding.root
     }
