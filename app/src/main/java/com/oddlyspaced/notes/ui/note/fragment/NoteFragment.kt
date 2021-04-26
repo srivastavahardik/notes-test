@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.oddlyspaced.notes.R
@@ -21,14 +22,22 @@ class NoteFragment: Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_note, container, false)
 
         setupObservers()
+        setupClickListeners()
 
         return binding.root
+    }
+
+    private fun setupClickListeners() {
+        binding.cvEditSave.setOnClickListener {
+            viewmodel.toggleEditing()
+        }
     }
 
     private fun setupObservers() {
         viewmodel.note.observe(viewLifecycleOwner, { completeNote ->
             completeNote.note.let { note ->
-                binding.txTitle.setText(note.title)
+                binding.txTitle.text = note.title
+                binding.etTitle.setText(note.title)
                 binding.txDate.text = note.date
             }
 
@@ -37,6 +46,14 @@ class NoteFragment: Fragment() {
                 if (contentList.isNotEmpty()) {
                     binding.txContent.setText(contentList.first().content)
                 }
+            }
+        })
+
+        // TODO : Use data binding
+        viewmodel.isEditing.observe(viewLifecycleOwner, { editing ->
+            binding.apply {
+                etTitle.isVisible = editing
+                txTitle.isVisible = !editing
             }
         })
     }
