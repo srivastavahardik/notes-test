@@ -66,7 +66,9 @@ class NoteFragment: Fragment() {
             }
 
             if (!editing) {
-                viewmodel.updateNote()
+                if ((viewmodel.title.value ?: "").isNotEmpty()) {
+                    viewmodel.updateNote()
+                }
             }
         })
     }
