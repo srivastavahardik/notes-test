@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.google.gson.Gson
 import com.oddlyspaced.notes.api.ApiClient
 import com.oddlyspaced.notes.api.ApiInterface
+import com.oddlyspaced.notes.modal.MessageResponse
 import com.oddlyspaced.notes.modal.Note
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -52,6 +53,24 @@ object NotesRepository {
                 Log.e("NotesRepository", add.body()?.message.toString())
             }
         }
+    }
+
+    fun deleteNote(noteId: Int) {
+        apiInterface.deleteNote(noteId).enqueue(object : Callback<MessageResponse> {
+            override fun onResponse(call: Call<MessageResponse>, response: Response<MessageResponse>) {
+                if (response.isSuccessful) {
+                    Log.d("NotesRepository", response.body()?.message.toString())
+                }
+                else {
+                    Log.e("NotesRepository", response.body()?.message.toString())
+                }
+            }
+
+            override fun onFailure(call: Call<MessageResponse>, t: Throwable) {
+                t.printStackTrace()
+            }
+
+        })
     }
 
 }
