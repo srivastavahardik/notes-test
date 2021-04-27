@@ -43,7 +43,13 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.rvHomeHeader.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        adapter = NotesAdapter(this)
+        adapter = NotesAdapter(this) { position ->
+            viewmodel.delete(adapter.currentList[position].id)
+            val list = ArrayList(adapter.currentList)
+            list.removeAt(position)
+            adapter.submitList(list)
+//            fetchNoteList()
+        }
         binding.rvHomeHeader.adapter = adapter
     }
 
