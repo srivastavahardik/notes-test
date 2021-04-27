@@ -11,4 +11,8 @@ class HomeViewModel : ViewModel() {
     val notes: LiveData<List<Note>>
         get() = notesRepository.fetchNotes()
 
+    fun delete(noteId: Int) {
+        notesRepository.deleteNote(noteId)
+    }
+
 }
